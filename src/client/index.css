@@ -1,0 +1,4 @@
+body{
+   min-width:320px; // Suppose you want minimum width of 320px
+   _width: expression( document.body.clientWidth > 320 ? "320px" : "auto" ); /* sets max-width for IE6 */
+}

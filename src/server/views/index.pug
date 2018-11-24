@@ -1,0 +1,13 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(http-equiv='X-UA-Compatible', content='ie=edge')
+    meta(property="og:description", content="GIF Capture")
+    if imageId
+      meta(property="og:image", content="https://firebasestorage.googleapis.com/v0/b/gif-capture.appspot.com/o/posts%2F" + imageId + ".gif?alt=media")
+    title GIF Capture
+  body
+    #root
+    script(src='/dist/bundle.js')
