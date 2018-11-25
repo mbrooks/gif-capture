@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
+const config = require('config');
 
 const app = express();
 
@@ -17,4 +18,4 @@ app.get('/view/:imageId', (req, res) => {
   const { imageId } = req.params;
   res.render('index', { imageId });
 });
-app.listen(8080, () => console.log('Listening on port 8080!'));
+app.listen(config.server.port, () => console.log(`Listening on port ${config.server.port}!`));
