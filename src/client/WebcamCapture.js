@@ -35,8 +35,9 @@ class WebcamCapture extends Component {
     super(props);
 
     this.state = {
+      constraints: { audio: false, video: { width: WIDTH, height: HEIGHT } },
       imageUrl: '/images/placeholderImage.png',
-      constraints: { audio: false, video: { width: WIDTH, height: HEIGHT } }
+      recordingGif: false,
     };
 
     this.handleStartClick = this.handleStartClick.bind(this);
@@ -46,6 +47,8 @@ class WebcamCapture extends Component {
     const { history } = this.props;
     const { constraints } = this.state;
     const photo = document.getElementById('photo');
+
+    this.setState({ recordingGif: true });
 
     const getUserMedia = params => (
       new Promise((successCallback, errorCallback) => {
@@ -74,13 +77,17 @@ class WebcamCapture extends Component {
           const imageId = makeid(24);
           const imageRef = firebase.storage().ref('posts').child(`${imageId}.gif`);
           getFileBlob(gifURL, (blob) => {
-            imageRef.put(blob, { contentType: 'image/gif' }).then(() => imageRef.getDownloadURL()).then((imageUrl) => {
-              // URL of the image uploaded on Firebase storage
-              log.info(`GIF uploaded to Firebase: ${imageUrl}`);
-              history.push(`/view/${imageId}`);
-            }).catch((err) => {
-              log.error(err);
-            });
+            imageRef.put(blob, { contentType: 'image/gif' })
+              .then(() => imageRef.getDownloadURL())
+              .then((imageUrl) => {
+                // URL of the image uploaded on Firebase storage
+                log.info(`GIF uploaded to Firebase: ${imageUrl}`);
+                this.setState({ recordingGif: false });
+                history.push(`/view/${imageId}`);
+              }).catch((err) => {
+                log.error(err);
+                this.setState({ recordingGif: false });
+              });
           });
         });
         stream.stop();
@@ -91,7 +98,7 @@ class WebcamCapture extends Component {
   }
 
   render() {
-    const { imageUrl } = this.state;
+    const { imageUrl, recordingGif } = this.state;
     return (
       <div className="capture container">
         <div className="output">
@@ -109,6 +116,7 @@ class WebcamCapture extends Component {
           className="btn btn-primary"
           id="handleStartClick"
           onClick={this.handleStartClick}
+          disabled={recordingGif}
         >
             Record Gif
         </button>
