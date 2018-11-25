@@ -38,6 +38,7 @@ class WebcamCapture extends Component {
       constraints: { audio: false, video: { width: WIDTH, height: HEIGHT } },
       imageUrl: '/images/placeholderImage.png',
       recordingGif: false,
+      storingImage: false,
     };
 
     this.handleStartClick = this.handleStartClick.bind(this);
@@ -71,6 +72,7 @@ class WebcamCapture extends Component {
       recorder.startRecording();
       delay(5000).then(() => {
         recorder.stopRecording((gifURL) => {
+          this.setState({ recordingGif: false, storingImage: true });
           // upload file to firebase
           const imageId = makeid(24);
           const imageRef = firebase.storage().ref('posts').child(`${imageId}.gif`);
@@ -80,11 +82,10 @@ class WebcamCapture extends Component {
               .then((imageUrl) => {
                 // URL of the image uploaded on Firebase storage
                 log.info(`GIF uploaded to Firebase: ${imageUrl}`);
-                this.setState({ recordingGif: false });
                 history.push(`/view/${imageId}`);
               }).catch((err) => {
                 log.error(err);
-                this.setState({ recordingGif: false });
+                this.setState({ storingImage: false });
               });
           });
         });
@@ -96,7 +97,25 @@ class WebcamCapture extends Component {
   }
 
   render() {
-    const { imageUrl, recordingGif } = this.state;
+    const { imageUrl, recordingGif, storingImage } = this.state;
+
+    if (storingImage) {
+      return (
+        <div>
+          <div className="row">
+            <div className="col">
+              <FontAwesomeIcon icon="spinner" size="6x" spin />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <p>Saving Image to Server</p>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div className="capture container">
         <div className="output">
