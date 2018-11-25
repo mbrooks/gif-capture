@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import placeholderImage from './images/placeholderImage.png';
 import log from './lib/log';
 
 const WIDTH = 300;
@@ -11,7 +10,7 @@ class ViewImage extends Component {
     super(props);
 
     this.state = {
-      imageUrl: placeholderImage,
+      imageUrl: '/images/placeholderImage.png',
     };
   }
 

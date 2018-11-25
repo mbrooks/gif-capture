@@ -2,8 +2,6 @@ const path = require('path');
 
 const outputDirectory = 'src/server/public/dist';
 
-console.log(path.join(__dirname, outputDirectory));
-
 module.exports = {
   entry: ['babel-polyfill', './src/client/index.js'],
   output: {

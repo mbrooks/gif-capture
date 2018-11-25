@@ -1,4 +1,7 @@
-import firebase from 'firebase';
+import firebase from '@firebase/app';
+import '@firebase/auth';
+import '@firebase/storage';
+
 const config = {
   apiKey: 'AIzaSyBLWT7a2mS6EwCGlE0JV6a82hf3WuNNIz0',
   authDomain: 'gif-capture.firebaseapp.com',

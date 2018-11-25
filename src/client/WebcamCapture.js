@@ -4,28 +4,27 @@ import { withRouter } from 'react-router';
 import RecordRTC from 'recordrtc';
 import delay from 'delay';
 import firebase from './lib/firebase';
-import placeholderImage from './images/placeholderImage.png';
 import log from './lib/log';
 
 const WIDTH = 300;
 const HEIGHT = 300;
 
-function makeid(length=8) {
+function makeid(length = 8) {
   let text = '';
   const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-  for (var i = 0; i < length; i++) {
+  for (let i = 0; i < length; i++) {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
   }
 
   return text;
 }
 
-function getFileBlob (url, cb) {
+function getFileBlob(url, cb) {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', url);
   xhr.responseType = 'blob';
-  xhr.addEventListener('load', function() {
+  xhr.addEventListener('load', () => {
     cb(xhr.response);
   });
   xhr.send();
@@ -36,7 +35,7 @@ class WebcamCapture extends Component {
     super(props);
 
     this.state = {
-      imageUrl: placeholderImage,
+      imageUrl: '/images/placeholderImage.png',
       constraints: { audio: false, video: { width: WIDTH, height: HEIGHT } }
     };
 
@@ -44,10 +43,11 @@ class WebcamCapture extends Component {
   }
 
   handleStartClick() {
-    const constraints = this.state.constraints;
+    const { history } = this.props;
+    const { constraints } = this.state;
     const photo = document.getElementById('photo');
 
-    const getUserMedia = (params) => (
+    const getUserMedia = params => (
       new Promise((successCallback, errorCallback) => {
         navigator.webkitGetUserMedia.call(navigator, params, successCallback, errorCallback);
       })
@@ -73,13 +73,11 @@ class WebcamCapture extends Component {
           // upload file to firebase
           const imageId = makeid(24);
           const imageRef = firebase.storage().ref('posts').child(`${imageId}.gif`);
-          getFileBlob(gifURL, blob => {
-            imageRef.put(blob, { contentType: 'image/gif' }).then(() => {
-              return imageRef.getDownloadURL();
-            }).then((imageUrl) => {
+          getFileBlob(gifURL, (blob) => {
+            imageRef.put(blob, { contentType: 'image/gif' }).then(() => imageRef.getDownloadURL()).then((imageUrl) => {
               // URL of the image uploaded on Firebase storage
               log.info(`GIF uploaded to Firebase: ${imageUrl}`);
-              this.props.history.push(`/view/${imageId}`);
+              history.push(`/view/${imageId}`);
             }).catch((err) => {
               log.error(err);
             });
@@ -103,12 +101,15 @@ class WebcamCapture extends Component {
             alt="Your face"
             width={WIDTH}
             height={HEIGHT}
-            src={imageUrl} />
+            src={imageUrl}
+          />
         </div>
         <button
+          type="button"
           className="btn btn-primary"
           id="handleStartClick"
-          onClick={ this.handleStartClick }>
+          onClick={this.handleStartClick}
+        >
             Record Gif
         </button>
       </div>
