@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import RecordRTC from 'recordrtc';
 import delay from 'delay';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import firebase from './lib/firebase';
 import log from './lib/log';
 
@@ -46,8 +46,6 @@ class WebcamCapture extends Component {
   handleStartClick() {
     const { history } = this.props;
     const { constraints } = this.state;
-    const photo = document.getElementById('photo');
-
     this.setState({ recordingGif: true });
 
     const getUserMedia = params => (
@@ -67,7 +65,7 @@ class WebcamCapture extends Component {
           // console.log('Recording Started!');
         },
         onGifPreview: (gifURL) => {
-          photo.src = gifURL;
+          this.setState({ imageUrl: gifURL });
         }
       });
       recorder.startRecording();
@@ -102,32 +100,31 @@ class WebcamCapture extends Component {
     return (
       <div className="capture container">
         <div className="output">
+          {recordingGif && (
           <img
-            id="photo"
             className="shadow p-3 mb-5 bg-white rounded"
             alt="Your face"
             width={WIDTH}
             height={HEIGHT}
             src={imageUrl}
           />
+          )
+          }
         </div>
         <button
           type="button"
-          className="btn btn-primary"
+          className="btn-lg btn-primary"
           id="handleStartClick"
           onClick={this.handleStartClick}
           disabled={recordingGif}
         >
-            Record Gif
+          Record Gif
+          {' '}
+          <FontAwesomeIcon icon="camera" />
         </button>
       </div>
     );
   }
 }
-
-WebcamCapture.propTypes = {
-  history: PropTypes.object
-};
-
 
 export default withRouter(WebcamCapture);

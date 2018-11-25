@@ -8,6 +8,13 @@
   "rules": {
     "no-console": "off",
     "comma-dangle": "off",
-    "react/jsx-filename-extension": "off"
+    "react/jsx-filename-extension": "off",
+    "react/prop-types": ["error", {
+      "ignore": [
+        "history",
+        "match"
+      ]
+    }],
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
   }
 }

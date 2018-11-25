@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
 import log from './lib/log';
 
 const WIDTH = 300;
 const HEIGHT = 300;
+
+function copyTextToClipboard() {
+  const linkUrl = document.getElementById('linkUrl');
+  linkUrl.select();
+  document.execCommand('copy');
+}
 
 class ViewImage extends Component {
   constructor(props) {
@@ -23,6 +29,7 @@ class ViewImage extends Component {
   }
 
   render() {
+    const { history } = this.props;
     const { imageUrl } = this.state;
     return (
       <div className="capture container">
@@ -36,13 +43,35 @@ class ViewImage extends Component {
             src={imageUrl}
           />
         </div>
+        <div className="row">
+          <div className="form-group col-3 " />
+          <div className="form-group col-6 ">
+            Share with others:
+            {' '}
+            <div className="input-group">
+              <input
+                id="linkUrl"
+                className="form-control text-center"
+                value={window.location.href}
+                onFocus={() => copyTextToClipboard()}
+              />
+              <div className="input-group-append">
+                <button type="button" className="input-group-text" onClick={() => copyTextToClipboard()}>copy</button>
+              </div>
+            </div>
+          </div>
+          <div className="form-group col-3 " />
+        </div>
+        <button
+          type="button"
+          className="btn btn-secondary"
+          onClick={() => history.push('/')}
+        >
+            Record Another GIF
+        </button>
       </div>
     );
   }
 }
 
-ViewImage.propTypes = {
-  match: PropTypes.object.isRequired
-};
-
-export default ViewImage;
+export default withRouter(ViewImage);

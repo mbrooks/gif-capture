@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCamera, faVideo } from '@fortawesome/free-solid-svg-icons';
 import WebcamCapture from './WebcamCapture';
 import ViewImage from './ViewImage';
 import firebase from './lib/firebase';
@@ -7,6 +9,9 @@ import log from './lib/log';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+
+library.add(faCamera);
+library.add(faVideo);
 
 class App extends Component {
   componentDidMount() {
