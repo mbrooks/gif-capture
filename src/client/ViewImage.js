@@ -33,7 +33,7 @@ class ViewImage extends Component {
     const { history } = this.props;
     const { imageUrl } = this.state;
     return (
-      <div className="capture container">
+      <div>
         <div className="output">
           <img
             id="photo"
