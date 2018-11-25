@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import log from './lib/log';
 
 const WIDTH = 300;
@@ -44,8 +45,8 @@ class ViewImage extends Component {
           />
         </div>
         <div className="row">
-          <div className="form-group col-3 " />
-          <div className="form-group col-6 ">
+          <div className="form-group col-md-3 " />
+          <div className="form-group col-md-6 ">
             Share with others:
             {' '}
             <div className="input-group">
@@ -54,13 +55,16 @@ class ViewImage extends Component {
                 className="form-control text-center"
                 value={window.location.href}
                 onFocus={() => copyTextToClipboard()}
+                readOnly
               />
               <div className="input-group-append">
-                <button type="button" className="input-group-text" onClick={() => copyTextToClipboard()}>copy</button>
+                <button type="button" className="input-group-text" onClick={() => copyTextToClipboard()}>
+                  <FontAwesomeIcon icon="copy" size="lg" />
+                </button>
               </div>
             </div>
           </div>
-          <div className="form-group col-3 " />
+          <div className="form-group col-md-3 " />
         </div>
         <button
           type="button"
