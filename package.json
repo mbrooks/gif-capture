@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "build": "webpack --mode production",
-    "start": "node src/server/index.js",
+    "start": "npm run build && node src/server/index.js",
     "server": "nodemon src/server/index.js",
     "dev": "concurrently \"webpack --mode development --watch\" \"npm run server\""
   },
