@@ -5,9 +5,10 @@
   "private": true,
   "scripts": {
     "build": "webpack --mode production",
-    "start": "npm run build && node src/server/index.js",
+    "start": "node src/server/index.js",
     "server": "nodemon src/server/index.js",
-    "dev": "concurrently \"webpack --mode development --watch\" \"npm run server\""
+    "dev": "concurrently \"webpack --mode development --watch\" \"npm run server\"",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@babel/core": "^7.0.0",
