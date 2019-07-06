@@ -11,9 +11,9 @@
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {
-    "@babel/core": "7.1.6",
-    "@babel/plugin-proposal-class-properties": "7.1.0",
-    "@babel/preset-env": "7.1.6",
+    "@babel/core": "7.5.0",
+    "@babel/plugin-proposal-class-properties": "7.5.0",
+    "@babel/preset-env": "7.5.0",
     "@babel/preset-react": "7.0.0",
     "@firebase/app": "0.3.5",
     "@firebase/auth": "0.7.9",
