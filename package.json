@@ -43,7 +43,7 @@
     "recordrtc": "5.4.8",
     "style-loader": "0.23.1",
     "url-loader": "2.0.1",
-    "webpack": "4.26.0",
+    "webpack": "4.35.2",
     "webpack-cli": "3.3.5"
   },
   "devDependencies": {
