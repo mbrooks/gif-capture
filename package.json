@@ -16,7 +16,7 @@
     "@babel/preset-env": "7.5.4",
     "@babel/preset-react": "7.0.0",
     "@firebase/app": "0.4.9",
-    "@firebase/auth": "0.11.3",
+    "@firebase/auth": "0.11.4",
     "@firebase/storage": "0.3.5",
     "@fortawesome/fontawesome-svg-core": "1.2.19",
     "@fortawesome/free-brands-svg-icons": "5.9.0",
