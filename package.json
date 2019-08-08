@@ -15,7 +15,7 @@
     "@babel/plugin-proposal-class-properties": "7.5.5",
     "@babel/preset-env": "7.5.5",
     "@babel/preset-react": "7.0.0",
-    "@firebase/app": "0.4.11",
+    "@firebase/app": "0.4.14",
     "@firebase/auth": "0.11.5",
     "@firebase/storage": "0.3.6",
     "@fortawesome/fontawesome-svg-core": "1.2.19",
