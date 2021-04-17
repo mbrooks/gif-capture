@@ -26,7 +26,7 @@
     "babel-loader": "8.0.6",
     "babel-polyfill": "6.26.0",
     "bootstrap": "4.3.1",
-    "concurrently": "^6.0.2",
+    "concurrently": "6.0.2",
     "config": "3.2.2",
     "css-loader": "3.2.0",
     "delay": "4.3.0",
@@ -34,9 +34,9 @@
     "file-loader": "4.2.0",
     "i": "0.3.6",
     "morgan": "1.9.1",
-    "npm": "^7.10.0",
+    "npm": "7.10.0",
     "prop-types": "15.7.2",
-    "pug": "^3.0.2",
+    "pug": "3.0.2",
     "react": "16.9.0",
     "react-dom": "16.9.0",
     "react-router": "5.0.1",
@@ -54,6 +54,6 @@
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "7.14.3",
-    "nodemon": "^2.0.7"
+    "nodemon": "2.0.7"
   }
 }
