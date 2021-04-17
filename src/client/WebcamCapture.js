@@ -49,7 +49,7 @@ class WebcamCapture extends Component {
     const { constraints } = this.state;
     this.setState({ recordingGif: true });
 
-    const getUserMedia = params => (
+    const getUserMedia = (params) => (
       new Promise((successCallback, errorCallback) => {
         navigator.webkitGetUserMedia.call(navigator, params, successCallback, errorCallback);
       })
@@ -127,8 +127,7 @@ class WebcamCapture extends Component {
             height={HEIGHT}
             src={imageUrl}
           />
-          )
-          }
+          )}
         </div>
         <button
           type="button"

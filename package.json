@@ -4,6 +4,7 @@
   "main": "src/server/index.js",
   "private": true,
   "scripts": {
+    "lint": "npx eslint .",
     "build": "webpack --mode production",
     "start": "node src/server/index.js",
     "server": "nodemon src/server/index.js",
