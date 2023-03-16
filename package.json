@@ -30,7 +30,7 @@
     "config": "3.2.2",
     "css-loader": "3.2.0",
     "delay": "4.3.0",
-    "express": "4.17.1",
+    "express": "4.17.2",
     "file-loader": "4.2.0",
     "i": "0.3.6",
     "morgan": "1.9.1",
